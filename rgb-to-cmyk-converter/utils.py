@@ -21,6 +21,8 @@ def get_cmy_by_normalized_rgb(r: float, g: float, b: float):
   ]
 
 def get_value_without_black(value: float, black: float):
+  if black == 1:
+    return 0
   return (value-black)/(1-black)
 
 def get_cmyk_pixel_by_cmy_pixel(c_pixel: float, m_pixel: float, y_pixel: float):
