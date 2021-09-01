@@ -1,6 +1,7 @@
 import numpy as np
 import cv2 as cv 
 import math
+import os
 
 def normalize_rgb_values_to_interval_0_1(number: float):
   return number/255
@@ -62,3 +63,16 @@ def get_hsi_by_rgb(r_matrix: int, g_matrix: int, b_matrix: int):
       )
 
   return hsi_matrix
+
+def print_hsi_matrix_into_file(textFilePath, hsi_matrix: float):
+  if os.path.exists(textFilePath):
+    os.remove(textFilePath)
+
+  textFile = open(textFilePath, 'x')
+
+  for row in range(len(hsi_matrix)):
+    for column in range(len(hsi_matrix[0])):
+      for thirdDimension in range(len(hsi_matrix[0][0])):
+        textFile.write('{:.2f} '.format(hsi_matrix[row][column][thirdDimension]))
+      textFile.write(' | ')
+    textFile.write('\n')
