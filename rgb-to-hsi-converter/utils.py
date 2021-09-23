@@ -64,15 +64,15 @@ def get_hsi_by_rgb(r_matrix: int, g_matrix: int, b_matrix: int):
 
   return hsi_matrix
 
-def print_hsi_matrix_into_file(textFilePath, hsi_matrix: float):
+def print_matrix_into_file(textFilePath, matrix: float):
   if os.path.exists(textFilePath):
     os.remove(textFilePath)
 
   textFile = open(textFilePath, 'x')
 
-  for row in range(len(hsi_matrix)):
-    for column in range(len(hsi_matrix[0])):
-      for thirdDimension in range(len(hsi_matrix[0][0])):
-        textFile.write('{:.2f} '.format(hsi_matrix[row][column][thirdDimension]))
+  for row in range(len(matrix)):
+    for column in range(len(matrix[0])):
+      for thirdDimension in range(len(matrix[0][0])):
+        textFile.write('{:.2f} '.format(matrix[row][column][thirdDimension]))
       textFile.write(' | ')
     textFile.write('\n')
