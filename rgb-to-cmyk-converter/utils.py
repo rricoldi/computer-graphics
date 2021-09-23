@@ -1,4 +1,5 @@
 import numpy as np
+import os
 
 def normalize_rgb_values_to_interval_0_1(number: float):
   return number/255
@@ -40,10 +41,10 @@ def get_cmyk_by_cmy(c_matrix: float, m_matrix: float, y_matrix: float):
   for row in range(len(c_matrix)):
     for column in range(len(c_matrix[0])):
       [c_pixel, m_pixel, y_pixel, black_pixel] = get_cmyk_pixel_by_cmy_pixel(c_matrix[row, column], m_matrix[row, column], y_matrix[row, column])
-      c_matrix[row, column] = c_pixel
-      m_matrix[row, column] = m_pixel
-      y_matrix[row, column] = y_pixel
-      k_matrix[row, column] = black_pixel
+      c_matrix[row, column] = c_pixel * 255
+      m_matrix[row, column] = m_pixel * 255
+      y_matrix[row, column] = y_pixel * 255
+      k_matrix[row, column] = black_pixel * 255
 
   return [
     c_matrix,
@@ -58,3 +59,16 @@ def get_cmyk_by_rgb(r: int, g: int, b: int):
   [c, m, y] = get_cmy_by_normalized_rgb(r, g, b)
 
   return get_cmyk_by_cmy(c, m, y)
+
+def print_matrix_into_file(textFilePath, matrix: float):
+  if os.path.exists(textFilePath):
+    os.remove(textFilePath)
+
+  textFile = open(textFilePath, 'x')
+
+  for row in range(len(matrix)):
+    for column in range(len(matrix[0])):
+      for thirdDimension in range(len(matrix[0][0])):
+        textFile.write('{} '.format(matrix[row][column][thirdDimension]))
+      textFile.write(' | ')
+    textFile.write('\n')
