@@ -37,7 +37,6 @@ def get_bi_dimensional_dct_by_image(image):
   dct_image = get_matrix_of_zeros(height, width)
   counter = 0
   for u in range(height):
-    print('{:.2f}%'.format((counter*100)/(height*width)))
     for v in range(width):
       counter += 1
       dct_image[u][v]= get_dct_by_u_v(u, v, height, width, image)
@@ -107,3 +106,13 @@ def print_matrix_into_file(textFilePath, matrix):
     for column in range(len(matrix[0])):
       textFile.write('{:.2f}, '.format(matrix[row][column]))
     textFile.write('\n')
+
+def generate_frequency_noise(frequency_matrix):
+  height = len(frequency_matrix)
+  width = len(frequency_matrix[0])
+
+  for x in range(round(height/8)):
+    for y in range(round(width/10)):
+      frequency_matrix[round((height/2)+x)][round((width/2)+y)] = 255.0
+  
+  return frequency_matrix
