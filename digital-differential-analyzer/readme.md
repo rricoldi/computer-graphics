@@ -9,7 +9,7 @@ Como retorno é impresso no terminal os pontos um por linha no formato: (x, y).
 
 ### Tecnologias
 
-O código foi feito usando **TypeScript** e compilado através do [Deno](https://deno.land/std/).
+O código foi feito usando **TypeScript** e compilado através do [Deno](https://deno.land).
 
 ### Como rodar?
 
